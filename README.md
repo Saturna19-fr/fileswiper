@@ -20,7 +20,7 @@ Un fichier existant n'est jamais écrasé (`x (2).jpg`). Chaque déplacement est
 
 ## Serveur (Windows)
 
-Récupérer `fileswiper-server.exe` (artefact du workflow CI, ou `go build` dans `server/`), puis :
+Télécharger `fileswiper-server.exe` depuis la [dernière release](https://github.com/Saturna19-fr/fileswiper/releases/latest) (publiée à chaque build), puis :
 
 ```bash
 fileswiper-server.exe -source "D:\A trier"
