@@ -1,0 +1,12 @@
+# Server
+server/fileswiper-server
+*.exe
+fileswiper.json
+fileswiper-hashcache.json
+fileswiper-journal.csv
+
+# Xcode
+ios/build/
+xcuserdata/
+DerivedData/
+.DS_Store

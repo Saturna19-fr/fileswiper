@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+
+jobs:
+  server:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: server
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: server/go.mod
+          cache-dependency-path: server/go.sum
+      - run: go vet ./...
+      - run: go test ./...
+      - run: GOOS=windows GOARCH=amd64 go build -ldflags "-s -w" -o fileswiper-server.exe .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fileswiper-server-windows
+          path: server/fileswiper-server.exe
+
+  ios:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - run: >
+          xcodebuild -project ios/FileSwiper.xcodeproj -target FileSwiper
+          -sdk iphonesimulator -configuration Debug build CODE_SIGNING_ALLOWED=NO
